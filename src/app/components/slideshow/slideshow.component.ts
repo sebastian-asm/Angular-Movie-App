@@ -25,11 +25,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit {
     });
   }
 
-  slideNext() {
-    this.mySwiper.slideNext();
-  }
-
-  slidePrev() {
-    this.mySwiper.slidePrev();
-  }
+  // Permitirá avanzar o retroceder con las fechas
+  slideNext = () => this.mySwiper.slideNext();
+  slidePrev = () => this.mySwiper.slidePrev();
 }
