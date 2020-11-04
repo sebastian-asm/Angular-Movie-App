@@ -2,3 +2,4 @@
 
 InfiniteScroll
 Bootstrap V5
+SwiperJS
