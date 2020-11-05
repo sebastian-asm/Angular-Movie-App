@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
 import { IMovie, IMovieResponse } from '../interfaces/cartelera-response';
+import { IMovieDetails } from '../interfaces/movie-response';
 
 @Injectable({
   providedIn: 'root',
@@ -48,5 +49,16 @@ export class ApiService {
         params,
       })
       .pipe(map((resp) => resp.results));
+  }
+
+  getMovieDetailsService(id: string) {
+    return this.http.get<IMovieDetails>(`${this.baseURL}/movie/${id}`, {
+      params: this.params,
+    });
+  }
+
+  // Reseteando y volviendo a la primera página de los resultados para el home
+  resetPage() {
+    this.page = 1;
   }
 }

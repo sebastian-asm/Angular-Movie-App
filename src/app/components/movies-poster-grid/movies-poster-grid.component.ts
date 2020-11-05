@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IMovie } from '../../interfaces/cartelera-response';
 
@@ -10,9 +11,12 @@ import { IMovie } from '../../interfaces/cartelera-response';
 export class MoviesPosterGridComponent implements OnInit {
   @Input() movies: Array<IMovie> = [];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    console.log(this.movies);
+  ngOnInit(): void {}
+
+  movieDetails(movie: IMovie) {
+    const { id } = movie;
+    this.router.navigate(['/movie', id]);
   }
 }
