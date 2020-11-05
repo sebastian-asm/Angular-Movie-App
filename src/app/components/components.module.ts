@@ -7,6 +7,7 @@ import { RatingModule } from 'ng-starrating';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { MoviesPosterGridComponent } from './movies-poster-grid/movies-poster-grid.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { MoviesPosterGridComponent } from './movies-poster-grid/movies-poster-gr
     SlideshowComponent,
     MoviesPosterGridComponent,
   ],
-  imports: [CommonModule, RatingModule, RouterModule],
+  imports: [CommonModule, RatingModule, RouterModule, PipesModule],
   exports: [NavbarComponent, SlideshowComponent, MoviesPosterGridComponent],
 })
 export class ComponentsModule {}

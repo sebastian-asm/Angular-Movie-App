@@ -1,7 +1,7 @@
 <div class="row">
   <div *ngFor="let movie of movies" class="col-md-4 mb-5">
     <img
-      src="https://image.tmdb.org/t/p/w500/86L8wqGMDbwURPni2t7FQ0nDjsH.jpg"
+      [src]="movie.poster_path | poster"
       [alt]="movie.title"
       class="img-fluid poster"
     />
@@ -15,7 +15,7 @@
             totalstars="10"
             checkedcolor="yellow"
             uncheckedcolor="grey"
-            size="18px"
+            size="15px"
             readonly="false"
           ></star-rating>
         </div>

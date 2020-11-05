@@ -2,24 +2,23 @@
   <div class="container-fluid">
     <a routerLink="/home" class="navbar-brand">Angular Movie App</a>
     <div class="collapse navbar-collapse">
-      <!-- <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-      </ul> -->
-
-      <form class="d-flex ml-auto">
+      <div class="d-flex ml-auto">
         <input
+          #txtBuscar
+          (keyup.enter)="searchMovies(txtBuscar.value)"
           class="form-control mr-2"
           type="search"
           placeholder="Buscar película..."
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
+        <button
+          (click)="searchMovies(txtBuscar.value)"
+          class="btn btn-outline-success"
+          type="submit"
+        >
+          Buscar
+        </button>
+      </div>
     </div>
   </div>
 </nav>
