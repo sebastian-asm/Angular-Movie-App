@@ -40,3 +40,9 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="cats.length > 0" class="row mt-5 mb-4">
+  <div class="col">
+    <app-cast-slides [cast]="cats"></app-cast-slides>
+  </div>
+</div>

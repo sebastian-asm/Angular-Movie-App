@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 
 import { IMovie, IMovieResponse } from '../interfaces/cartelera-response';
 import { IMovieDetails } from '../interfaces/movie-response';
+import { ICast, ICreditsResponse } from '../interfaces/credits-response';
 
 @Injectable({
   providedIn: 'root',
@@ -52,13 +53,28 @@ export class ApiService {
   }
 
   getMovieDetailsService(id: string) {
-    return this.http.get<IMovieDetails>(`${this.baseURL}/movie/${id}`, {
-      params: this.params,
-    });
+    return this.http
+      .get<IMovieDetails>(`${this.baseURL}/movie/${id}`, {
+        params: this.params,
+      })
+      .pipe(
+        // En caso de poner un id en la url que no exista, se maneja el error
+        // Se devuelve un observable con valor null
+        catchError(() => of(null))
+      );
   }
 
   // Reseteando y volviendo a la primera página de los resultados para el home
-  resetPage() {
-    this.page = 1;
+  resetPage = () => (this.page = 1);
+
+  getCreditsService(id: string): Observable<Array<ICast>> {
+    return this.http
+      .get<ICreditsResponse>(`${this.baseURL}/movie/${id}/credits`, {
+        params: this.params,
+      })
+      .pipe(
+        map((resp) => resp.cast),
+        catchError(() => of([]))
+      );
   }
 }
